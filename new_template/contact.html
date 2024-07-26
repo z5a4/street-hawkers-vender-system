@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="contact.css">
+    <title>Contact Us</title>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="email">EMAIL: <span>streethawkerstracker@gmail.com</span></div>
+        <div class="project-name">STREET HAWKERS TRACKING SYSTEM</div>
+        <div class="contact">CONTACT US: <span>+91 12345 67890</span></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="about.html">ABOUT US</a></li>
+            <li><a href="team.html">TEAM</a></li>
+            <li><a href="feedback.html">FEEDBACK</a></li>
+            <li><a href="form.html">SIGN IN</a></li>
+            <li><a href="Reg.html">SIGN UP</a></li>
+            <li><a href="contact.html">CONTACT US</a></li>
+        </ul>
+    </nav>
+
+    <!-- Content of the About Us Page -->
+   <section class="image-section">
+        <!-- Add your image here -->
+        <img src="img/bg.jpg">
+    </section>
+
+<div class="tab">
+        <div class="page-name">Contact Us</div>
+    <div class="home-link">Home/<span>Contact Us</span></div>
+    </div>
+
+    <div class="space-below-page-link">
+   <div class="form-body"> 
+       
+<div class="feedback-container">
+        <h2>Drop Your Message</h2>
+        <p>For more details contact us here...</p>
+        <div class="error-message" id="error-message">
+    <p id="name-error" class="error-text"></p>
+    <p id="email-error" class="error-text"></p>
+    <p id="phone-error" class="error-text"></p>
+    <p id="subject-error" class="error-text"></p>
+    <p id="message-error" class="error-text"></p>
+</div>
+        <form id="feedback-form" action="contact.php" method="POST">
+            <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <span class="error" id="name-error"></span> <!-- Error message element -->
+</div>
+<div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <span class="error" id="email-error"></span> <!-- Error message element -->
+</div>
+<div class="form-group">
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" name="phone" required>
+    <span class="error" id="phone-error"></span> <!-- Error message element -->
+</div>
+<div class="form-group">
+    <label for="subject">Subject:</label>
+    <input type="text" id="subject" name="subject" required>
+    <span class="error" id="subject-error"></span> <!-- Error message element -->
+</div>
+<div class="form-group">
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" rows="4" required></textarea>
+    <span class="error" id="message-error"></span> <!-- Error message element -->
+</div>
+
+<button name="dropmsg" type="submit" onclick="return validateForm()">Drop Message</button>
+</form>
+    </div>
+</div>
+    <!-- ... (Footer or other content) -->
+ <footer class="footer">
+        <div class="footer-column">
+            <h4>Address</h4>
+            <p>101, First Floor,<br> Amaan Residency,<br>Fatehganj,<br> Vadodara-390002</p>
+        </div>
+        <div class="footer-column">
+            <h4>Useful Links</h4>
+            <ul>
+                <li><a href="about.html">ABOUT US</a></li>
+                <li><a href="team.html">TEAM</a></li>
+                <li><a href="form.html">SIGN IN</a></li>
+                <li><a href="Reg.html">SIGN UP</a></li>
+                <li><a href="contact.html">CONTACT US</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <div class="credit-line">
+        Developed and Designed by <span>Team NO.1</span>
+    </div>
+  
+<script>
+        function validateForm() {
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var phone = document.getElementById("phone").value;
+    var subject = document.getElementById("subject").value;
+    var message = document.getElementById("message").value;
+    var isValid = true;
+
+    // Clear any previous error messages and reset styles
+    document.getElementById("error-message").style.display = "none";
+    document.getElementById("error-message").style.backgroundColor = "#ffcccc"; // Light red background
+    document.getElementById("error-message").style.border = "1px solid #ff0000"; // Red border
+    document.getElementById("error-message").style.padding = "10px"; // Padding for the error box
+    document.getElementById("error-message").style.marginBottom = "10px"; // Space below the error box
+
+    document.getElementById("name-error").innerHTML = "";
+    document.getElementById("email-error").innerHTML = "";
+    document.getElementById("phone-error").innerHTML = "";
+    document.getElementById("subject-error").innerHTML = "";
+    document.getElementById("message-error").innerHTML = "";
+
+    // Validate Name
+    if (name.trim() === "") {
+        document.getElementById("error-message").style.display = "block";
+        document.getElementById("name-error").innerHTML = "Name is required";
+        isValid = false;
+    }
+
+    // Validate Email
+    if (email.trim() === "") {
+        document.getElementById("error-message").style.display = "block";
+        document.getElementById("email-error").innerHTML = "Email is required";
+        isValid = false;
+    }
+
+    // Validate Phone
+    if (phone.trim() === "") {
+    document.getElementById("error-message").style.display = "block";
+    document.getElementById("phone-error").innerHTML = "Phone Number is required";
+    isValid = false;
+}  else if (phone.length>10) {
+    document.getElementById("error-message").style.display = "block";
+    document.getElementById("phone-error").innerHTML = "Please enter phone number within 10 digits";
+    isValid = false;
+} else if (!/^\d+$/.test(phone)) {
+    document.getElementById("error-message").style.display = "block";
+    document.getElementById("phone-error").innerHTML = "Please enter a valid 10-digit phone number";
+    isValid = false;
+}
+
+    // Validate Subject
+    if (subject.trim() === "") {
+        document.getElementById("error-message").style.display = "block";
+        document.getElementById("subject-error").innerHTML = "Subject is required";
+        isValid = false;
+    }
+
+    // Validate Message
+    if (message.trim() === "") {
+        document.getElementById("error-message").style.display = "block";
+        document.getElementById("message-error").innerHTML = "Message is required";
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+    </script>
+    <script src="feedback.js" defer></script>
+    <script src="ratingsslider.js"></script>
+
+    </body>
+</html>

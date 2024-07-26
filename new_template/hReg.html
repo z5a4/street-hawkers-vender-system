@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .error-box {
+            display: none; /* Initially hide the error box */
+            background-color: #ffcccc;
+            border: 1px solid #ff0000;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Registration Form</h1>
+
+        <div class="error-box" id="error-box">
+            <p id="fullname-error" class="error-text"></p>
+            <p id="phone-error" class="error-text"></p>
+            <p id="email-error" class="error-text"></p>
+            <p id="password-error" class="error-text"></p>
+            <p id="address-error" class="error-text"></p>
+        </div>
+
+        <form name="RegForm" onsubmit="return validateForm()" action="hReg.php" method="POST">
+            <div class="form-group">
+                <label for="fullname">FullName</label>
+                <input type="text" id="name" name="Name" placeholder="Enter your FullName">
+                <span class="error" id="fullname-error"></span>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone No</label>
+                <input type="text" id="phone" name="Phone" placeholder="Enter your Phone No">
+                <span class="error" id="phone-error"></span>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="Email" placeholder="Enter your Email Address">
+                <span class="error" id="email-error"></span>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="Password" placeholder="Enter your Password">
+                <span class="error" id="password-error"></span>
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <textarea id="address" name="Address" rows="4" placeholder="Enter your Address"></textarea>
+                <span class="error" id="address-error"></span>
+            </div>
+            <div class="form-group">
+                <label for="fullName">Category</label>
+                <select id="category" name="Category">
+                    <option value="fruits">Fruits</option>
+                    <option value="vegetables">Vegetables</option>
+                </select>
+            </div>
+            <button name="signup" type="submit">Sign Up</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            var Name = document.forms.RegForm.Name.value;
+            var Phone = document.forms.RegForm.Phone.value;
+            var Email = document.forms.RegForm.Email.value;
+            var Password = document.forms.RegForm.Password.value;
+            var Address = document.forms.RegForm.Address.value;
+            // Javascript regex for Email Validation.
+            var regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g; 
+            // Javascript regex for Phone Number validation.
+            var regPhone = /^\d{10}$/;                     
+            // Javascript regex for Name validation
+            var regName = /\d+$/g;                       
+
+            if (Name == "" || regName.test(Name)) {
+                alert("Please enter your name properly.");
+                document.forms.RegForm.Name.focus();
+                return false;
+            }
+
+            if (Phone == "" || !regPhone.test(Phone)) {
+                alert("Please enter valid phone number.");
+                document.forms.RegForm.Phone.focus();
+                return false;
+            }
+
+            if (Email == "" || !regEmail.test(Email)) {
+                alert("Please enter a valid e-mail address.");
+                document.forms.RegForm.Email.focus();
+                return false;
+            }
+            
+            if (Password == "") {
+                alert("Please enter your password");
+                document.forms.RegForm.Password.focus();
+                return false;
+            }
+
+            if (Address == "") {
+                alert("Please enter your address.");
+                document.forms.RegForm.Address.focus();
+                return false;
+            }
+
+            // Return true if all validation passes
+            return true;
+        }
+    </script>
+</body>
+</html>

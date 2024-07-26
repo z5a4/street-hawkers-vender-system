@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="for.css"> <!-- Your custom CSS file -->
+
+</head>
+<body>
+    <div class="container">
+        <h1>Login Form</h1>
+
+        <div class="error-message" id="error-message">
+                     <p id="username-error" class="error-text"></p>
+                     <p id="password-error" class="error-text"></p>
+                </div>
+
+        <form action="login2.php" method="POST" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="userType">Select Type</label>
+                <select id="userType" name="userType" required>
+                    <option value="admin">Admin</option>
+                    <option value="user">Customer</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="Username" placeholder="Enter Username">
+                <span class="error" id="username-error"></span>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="Password" placeholder="Enter Password">
+                <span class="error" id="password-error"></span>
+            </div>
+
+            <button name="signin" type="submit">Sign In</button>
+            <button onclick="window.location.href='index.html'" type="button">Home</button><br><br>
+            <a href="Forgot.html" style="color: black">Forgot Password?</a>
+        </form>
+        <p>Don't have an Account? <a href="Reg.html"> Register Now!</a></p>
+    </div>
+    <script>
+    function validateForm() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        var isValid = true;
+        var errorMessages = {
+            username: "Username is required",
+            password: "Password is required",
+        };
+
+        document.getElementById("error-message").style.display = "none";
+        document.getElementById("error-message").style.backgroundColor = "#ffcccc"; // Light red background
+        document.getElementById("error-message").style.border = "1px solid #ff0000"; // Red border
+        document.getElementById("error-message").style.padding = "10px"; // Padding for the error box
+        document.getElementById("error-message").style.marginBottom = "10px"; // Space below the error box
+
+        // Clear any previous error messages and reset styles
+        document.getElementById("error-message").style.display = "none";
+
+        // Loop through form fields for validation
+        for (var field in errorMessages) {
+            var errorMessage = errorMessages[field];
+            if (!document.getElementById(field).value.trim()) {
+                document.getElementById("error-message").style.display = "block";
+                document.getElementById(field + "-error").textContent = errorMessage;
+                isValid = false;
+            } else {
+                document.getElementById(field + "-error").textContent = "";
+            }
+        }
+
+        return isValid;
+    }
+    </script>
+</body>
+</html>

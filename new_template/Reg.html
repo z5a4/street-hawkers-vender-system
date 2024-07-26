@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="style.css"> <!-- Your custom CSS file -->
+</head>
+<body>
+    <div class="container">
+        <h1>Registration Form</h1>
+        <form action="Regis.php" method="POST">
+            <div class="form-group">
+                <label for="userType">Select Type</label>
+                <select id="userType" name="Type" required>
+                    <option value="admin">Admin</option>
+                    <option value="user">Customer</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="regId">Reg ID</label>
+                <input type="text" id="regId" name="RegId" placeholder="Enter Your Registration Id" required>
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="Username"
+                placeholder="Enter your Username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="Password" placeholder="Enter your Password" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Confirm Password</label>
+                <input type="password" id="password" name="Cpassword" placeholder="Enter your same Password again" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="Email" placeholder="Enter your Email Address" required>
+            </div>
+            <div class="form-group">
+                <label for="mobile">Mobile Number</label>
+                <input type="tel" id="mobile" name="Mobile" placeholder="Enter your Mobile Number" required>
+            </div>
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="FullName" placeholder="Enter your FullName" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                 <textarea id="address" name="Address" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="questions">Security Question</label>
+                <select id="questions" name="Question" required>
+                    <option value="question1">What is your Birth Date?</option>
+                    <option value="question2">What is the last 4 digits of your phone no? </option>
+                    <option value="question3">What is the name of your passout school?</option>
+                    <option value="question4">What is your favourite Dish?</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="answer">Answer</label>
+                <input type="text" id="answer" name="Answer" placeholder="Enter your Answer" required>
+            </div>
+            <button name="signup_btn" type="submit">Sign Up</button>
+        </form>
+    </div>
+</body>
+</html>

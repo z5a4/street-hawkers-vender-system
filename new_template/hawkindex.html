@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hawker Homepage</title>
+    <link rel="stylesheet" href="stylehawk.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">Street Hawkers Tracking System</div>
+        <ul>
+            <li><a href="home.php">Home</a></li>
+            <li><a href="logout.php">Logout</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <h2>Data from Location Table</h2>
+        
+        <?php
+        // Database connection settings
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "hawks";
+
+        // Create a database connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // Check the connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        // SQL query to select data from the location table
+        $sql = "SELECT * FROM location";
+
+        // Execute the SQL query
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            echo '<table class="data-table">
+                    <caption>Location Data</caption>
+                    <thead>
+                        <tr>
+                            <th>Hawker Name</th>
+                            <th>Contact</th>
+                            <th>Location</th>
+                            <th>Landmark</th>
+                            <th>Time</th>
+                            <th>Map Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+
+            // Output data of each row
+            while ($row = $result->fetch_assoc()) {
+                echo '<tr>
+                        <td>' . $row["h_name"] . '</td>
+                        <td>' . $row["contact"] . '</td>
+                        <td>' . $row["Locationn"] . '</td>
+                        <td>' . $row["landmark"] . '</td>
+                        <td>' . $row["Timee"] . '</td>
+                        <td>' . $row["loc_link"] . '</td>
+                      </tr>';
+            }
+
+            echo '</tbody>
+                  </table>';
+        } else {
+            echo "No data found in the location table.";
+        }
+
+        // Close the database connection
+        $conn->close();
+        ?>
+    </div>
+</body>
+</html>
